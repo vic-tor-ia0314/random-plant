@@ -1,7 +1,7 @@
 const button = document.getElementById("getPlant");
 const display = document.getElementById("plantDisplay");
 
-const API_KEY = "YOUR_API_KEY_HERE";
+const API_KEY = "sk-MuGt694c7db80ed7114089";
 
 button.addEventListener("click", fetchRandomPlant);
 
