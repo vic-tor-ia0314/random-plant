@@ -1,7 +1,7 @@
 const button = document.getElementById("getPlant");
 const display = document.getElementById("plantDisplay");
 
-const API_KEY = "sk-RqXE694c79384ea6e14089";
+const API_KEY = "YOUR_API_KEY_HERE";
 
 button.addEventListener("click", fetchRandomPlant);
 
@@ -33,18 +33,29 @@ async function fetchRandomPlant() {
       <h2>${plant.common_name || "Unknown Plant"}</h2>
 
       ${
-        plant.default_image
-          ? `<img src="${plant.default_image.medium_url}" alt="${plant.common_name}">`
+        plant.default_image?.medium_url
+          ? `<img src="${plant.default_image.medium_url}" alt="${plant.common_name || "Plant"}">`
           : ""
       }
 
-      <p><strong>Scientific Name:</strong> ${plant.scientific_name.join(", ")}</p>
-      <p><strong>Watering:</strong> ${plant.watering}</p>
-      <p><strong>Sunlight:</strong> ${plant.sunlight.join(", ")}</p>
-      <p><strong>Cycle:</strong> ${plant.cycle}</p>
+      <p><strong>Scientific Name:</strong> ${
+        Array.isArray(plant.scientific_name)
+          ? plant.scientific_name.join(", ")
+          : "Unknown"
+      }</p>
+
+      <p><strong>Watering:</strong> ${plant.watering || "Unknown"}</p>
+
+      <p><strong>Sunlight:</strong> ${
+        Array.isArray(plant.sunlight)
+          ? plant.sunlight.join(", ")
+          : "Unknown"
+      }</p>
+
+      <p><strong>Cycle:</strong> ${plant.cycle || "Unknown"}</p>
     `;
   } catch (error) {
-    console.error(error);
+    console.error("ERROR:", error);
     display.innerHTML = "<p>Error loading plant 😢</p>";
   }
 }
