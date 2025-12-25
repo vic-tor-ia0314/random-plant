@@ -29,6 +29,13 @@ async function fetchRandomPlant() {
 
     display.innerHTML = `
       <h2>${plant.common_name || "Unknown Plant"}</h2>
+
+      ${
+        plant.default_image?.medium_url
+          ? `<img src="${plant.default_image.medium_url}" alt="${plant.common_name || "Plant"}" style="max-width:100%; border-radius:8px;">`
+          : "<p>No image available</p>"
+      }
+
       <p><strong>Scientific Name:</strong> ${plant.scientific_name || "Unknown"}</p>
     `;
   } catch (error) {
