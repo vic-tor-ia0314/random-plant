@@ -29,19 +29,7 @@ async function fetchRandomPlant() {
 
     display.innerHTML = `
       <h2>${plant.common_name || "Unknown Plant"}</h2>
-
-      ${
-        plant.default_image?.medium_url
-          ? `<img src="${plant.default_image.medium_url}" alt="${plant.common_name || "Plant"}">`
-          : "<p>No image available</p>"
-      }
-
       <p><strong>Scientific Name:</strong> ${plant.scientific_name || "Unknown"}</p>
-      <p><strong>Watering:</strong> ${plant.growth?.water || "Unknown"}</p>
-      <p><strong>Sunlight:</strong> ${plant.growth?.light || "Unknown"}</p>
-      <p><strong>Cycle:</strong> ${plant.growth?.cycle || "Unknown"}</p>
-      <p><strong>Soil:</strong> ${plant.growth?.soil || "Unknown"}</p>
-      <p><strong>Propagation:</strong> ${plant.propagation?.method || "Unknown"}</p>
     `;
   } catch (error) {
     console.error("ERROR:", error);
